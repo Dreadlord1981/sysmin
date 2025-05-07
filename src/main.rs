@@ -123,6 +123,12 @@ fn main() -> Result<(), anyhow::Error> {
 				"$POPATH/app/ux/form/field/Search.js",
 				"$POPATH/app/menu/view/System.js",
 				"$POPATH/app/notification/util/Notification.js",
+				"$POPATH/app/login/controller/Template.js",
+				"$POPATH/app/login/view/Template.js",
+				"$POPATH/app/login/controller/Forgot.js",
+				"$POPATH/app/login/view/Forgot.js",
+				"$POPATH/app/login/controller/Expire.js",
+				"$POPATH/app/login/view/Expire.js",
 				"$POPATH/app/util/jquery.utilities.js"
 				
 			];
@@ -377,12 +383,6 @@ fn main() -> Result<(), anyhow::Error> {
 			"$POPATH/app/ux/form/field/Month.js",
 			"$POPATH/app/ux/form/field/Link.js",
 			"$POPATH/app/ux/form/field/Iframe.js",
-			"$POPATH/app/login/controller/Template.js",
-			"$POPATH/app/login/view/Template.js",
-			"$POPATH/app/login/controller/Forgot.js",
-			"$POPATH/app/login/view/Forgot.js",
-			"$POPATH/app/login/controller/Expire.js",
-			"$POPATH/app/login/view/Expire.js",
 			"$POPATH/app/designer/ui/save/view/Tree.js",
 			"$POPATH/app/designer/ui/save/view/Main.js",
 			"$POPATH/app/menu/form/Link.js",
