@@ -92,13 +92,13 @@ fn main() -> Result<(), anyhow::Error> {
 				"$POPATH/app/Router.js",
 				"$POPATH/app/util/jquery-1.9.0.min.js",				
 				"$POPATH/app/util/raphael.2.1.0.min.js",
+				"$POPATH/app/ux/ckeditor/ckeditor.js",
 				"$POPATH/ext-override.js",
 				"$POPATH/app/util/Handler.js",
 				"$POPATH/app/state/global/Provider.js",
 				"$POPATH/app/state/profile/Provider.js",
 				"$POPATH/app/defaults/uitype.js",
 				"$POPATH/app/ux/Badge.js",
-				"$POPATH/app/ux/ckeditor/ckeditor.js",
 				"$POPATH/app/ux/form/field/CKEditorField.js",
 				"$POPATH/app/ux/container/Widget.js",
 				"$POPATH/app/ux/plugin/data/Tracker.js",
@@ -128,20 +128,15 @@ fn main() -> Result<(), anyhow::Error> {
 			];
 		}
 
-
 		let mut op = Operation::new("Portfolio - boot", "$POPATH/system-boot.js", "$POPATH/system-boot-debug.js");
 		op.files = files;
 		op.extra = vec![];
 		op.append = true;
 		op.run()?;
-
 		
 		let mut extra: Vec<&str> = args.extra.split_whitespace().collect();
 
-
-		files = vec![
-						
-			
+		let mut files = vec![
 			"$POPATH/app/data/field/Json.js",
 			"$POPATH/app/defaults/uirules.js",
 			"$POPATH/app/dynapp/util/Service.js",
