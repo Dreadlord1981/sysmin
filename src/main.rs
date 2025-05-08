@@ -92,6 +92,7 @@ fn main() -> Result<(), anyhow::Error> {
 				"$POPATH/app/Router.js",
 				"$POPATH/app/util/jquery-1.9.0.min.js",				
 				"$POPATH/app/util/raphael.2.1.0.min.js",
+				"$POPATH/app/util/jquery.utilities.js",
 				"$POPATH/app/ux/ckeditor/ckeditor.js",
 				"$POPATH/ext-override.js",
 				"$POPATH/app/util/Handler.js",
@@ -129,8 +130,7 @@ fn main() -> Result<(), anyhow::Error> {
 				"$POPATH/app/login/view/Forgot.js",
 				"$POPATH/app/login/controller/Expire.js",
 				"$POPATH/app/login/view/Expire.js",
-				"$POPATH/app/util/jquery.utilities.js"
-				
+				"$POPATH/app/ux/form/field/MonacoEditor.js"
 			];
 		}
 
