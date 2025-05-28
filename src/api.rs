@@ -10,7 +10,8 @@ pub struct Operation<'a> {
 	pub debug_path: PathBuf,
 	pub files: Vec<&'a str>,
 	pub extra: Vec<&'a str>,
-	pub append: bool
+	pub append: bool,
+	pub boot: bool
 }
 
 impl<'a> Operation<'a> {
@@ -53,6 +54,12 @@ impl<'a> Executor for Operation<'a> {
 		.append(true)
 		.open(&out_system_debug_path)?;
 
+		let mut system_file = OpenOptions::new()
+		.create(true)
+		.write(true)
+		.truncate(true)
+		.open(&out_system_path)?;
+
 		println!("{}: Concatenating files", self.name);
 
 		for file_path in &self.files {
@@ -62,13 +69,44 @@ impl<'a> Executor for Operation<'a> {
 			let result = fs::read(read_path.to_string())?;
 
 			system_debug_file.write_all(&result)?;
+			system_file.write_all(&result)?;
 		}
 
+		if self.boot {
+
+			system_debug_file.write_all(r"
+			Ext.define('Portfolio.boot.Importer', {
+				
+				singleton: true,
+
+				mixins: [
+					'Ext.mixin.Mashup'
+				],
+
+				requiredScripts: [
+					'/portfolio/system-debug.js'
+				]
+			});
+			".as_bytes())?;
+
+			system_file.write_all(r"
+			Ext.define('Portfolio.boot.Importer', {
+				
+				singleton: true,
+
+				mixins: [
+					'Ext.mixin.Mashup'
+				],
+
+				requiredScripts: [
+					'/portfolio/system.js'
+				]
+			});
+			".as_bytes())?;
+		}
+		
 		println!("{}: Concatenating done", self.name);
 
-		if out_system_path.exists() {
-			fs::remove_file(&out_system_path)?;
-		}
 
 		println!("{}: Processing files", self.name);
 
@@ -76,7 +114,7 @@ impl<'a> Executor for Operation<'a> {
 		.args([
 			"/C",
 			"uglifyjs",
-			&out_system_debug_path.to_string_lossy(),
+			&out_system_path.to_string_lossy(),
 			"-c",
 			"toplevel",
 			"-m",

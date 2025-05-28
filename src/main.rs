@@ -87,19 +87,18 @@ fn main() -> Result<(), anyhow::Error> {
 		if files.is_empty() {
 
 			files = vec![
-				"$POPATH/app/util/Theme.js",
-				"$POPATH/app/state/local/Provider.js",
-				"$POPATH/app/Router.js",
 				"$POPATH/app/util/jquery-1.9.0.min.js",				
 				"$POPATH/app/util/raphael.2.1.0.min.js",
-				"$POPATH/app/util/jquery.utilities.js",
-				"$POPATH/app/ux/ckeditor/ckeditor.js",
 				"$POPATH/ext-override.js",
+				"$POPATH/app/util/Theme.js",
 				"$POPATH/app/util/Handler.js",
+				"$POPATH/app/state/local/Provider.js",
 				"$POPATH/app/state/global/Provider.js",
 				"$POPATH/app/state/profile/Provider.js",
+				"$POPATH/app/Router.js",
 				"$POPATH/app/defaults/uitype.js",
 				"$POPATH/app/ux/Badge.js",
+				"$POPATH/app/ux/ckeditor/ckeditor.js",
 				"$POPATH/app/ux/form/field/CKEditorField.js",
 				"$POPATH/app/ux/container/Widget.js",
 				"$POPATH/app/ux/plugin/data/Tracker.js",
@@ -130,7 +129,8 @@ fn main() -> Result<(), anyhow::Error> {
 				"$POPATH/app/login/view/Forgot.js",
 				"$POPATH/app/login/controller/Expire.js",
 				"$POPATH/app/login/view/Expire.js",
-				"$POPATH/app/ux/form/field/MonacoEditor.js"
+				"$POPATH/app/util/jquery.utilities.js"
+				
 			];
 		}
 
@@ -138,6 +138,7 @@ fn main() -> Result<(), anyhow::Error> {
 		op.files = files;
 		op.extra = vec![];
 		op.append = true;
+		op.boot = true;
 		op.run()?;
 		
 		let mut extra: Vec<&str> = args.extra.split_whitespace().collect();
